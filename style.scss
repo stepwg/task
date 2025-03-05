@@ -1,0 +1,113 @@
+@import 'vars';
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Source Code Pro", monospace;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 24px;
+  color: white;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 21px;
+  color: $color-text;
+}
+
+h3 {
+  font-size: 18px;
+  color: $color-text;
+}
+
+.top {
+  height: 221px;
+  width: 100%;
+  background-color: black;
+  background-image: url(./img/image.jpg);
+  background-repeat: no-repeat;
+  background-position: right;
+  position: relative;
+  z-index: 1;
+  background-size: 30% 100%;
+}
+
+.wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  margin-top: -221px;
+  padding-left: 156px;
+  padding-right: 156px;
+}
+
+.center {
+  width: 648px;
+  margin: 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 18px;
+}
+
+.playground__text {
+  font-size: 14px;
+  color: $Dark;
+}
+
+.header {
+  display: flex;
+  height: 221px;
+
+  &__block {
+    width: 363px; 
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  &__block_text {
+    color: white;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+.playground {
+  margin-top: $margin-top;
+}
+
+.description {
+  margin-top: $margin-top;
+  border-bottom: solid rgb(0, 0, 0);
+  border-bottom-width: 1px;
+
+  &__text {
+    color: $Dark;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+}
+
+@import 'playground';
+@import 'button';
+@import 'footer'

@@ -1,0 +1,32 @@
+.footer {
+    height: 100px;
+    background-color: $Primery;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 10px;
+    overflow: hidden;
+    filter: blur(5px);
+    transition: filter 0.5s ease-in-out;
+  }
+  
+  .footer-content {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .footer:hover {
+    filter: blur(0);
+  }
+  
+  .footer:hover .footer-content {
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 376px) {
+    .footer {
+      padding: 0px;
+    }
+}

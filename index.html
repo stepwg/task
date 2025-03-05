@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stepanov Andrey testTask</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top"></div>
+    <div class="wrapper">
+        <header class="header center">
+            <div class="header__block">
+                <h1>Заголовок h1</h1>
+                <p class="header__block_text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+            </div>
+        </header>
+        <section class="playground center">
+            <h2>Заголовок h2</h2>
+            <form class="for-mob" id="myForm">
+                <div class="range-box">
+                    <p class="playground__text">Выберите диапазон</p>
+                    <div class="input-box">
+                        <input class="value-box" type="number" id="rangeMin" min="0" max="150" placeholder="от 0">
+                        <input class="value-box" type="number" id="rangeMax" min="0" max="150" placeholder="до 150">
+                    </div>
+                    <div class="slider-container">
+                        <input class="slider" type="range" id="sliderMin" min="0" max="150" value="0">
+                        <input class="slider" type="range" id="sliderMax" min="0" max="150" value="150">
+                        <div class="slider-track"></div>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="select-box">
+                        <p class="playground__text">Выберите select</p>
+                        <select id="numberSelect" class="number-select">
+                            <option value="" selected disabled hidden>Option</option>
+                            <option value="Vite">Vite</option>
+                            <option value="Webpack">Webpack</option>
+                            <option value="Gulp">Gulp</option>
+                        </select>
+                    </div>
+                    <div class="radio-box">
+                        <p id="radio-text" class="playground__text">Выберите radio</p>
+                        <div class="radio-options">
+                            <label class="radio-label">
+                                <input type="radio" name="option" value="JavaScript" class="radio-input"> JavaScript
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="option" value="PHP" class="radio-input"> PHP
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="option" value="C#" class="radio-input"> C#
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="name-box">
+                        <p class="playground__text">Введите ФИО</p>
+                        <input class="personName-box" type="text" id="name" name="name" placeholder="Placeholder">
+                        <span id="error-message-name">Полное ФИО и без цифр</span>
+                    </div>
+                    <div class="age-box">
+                        <p class="playground__text">Введите возраст в цифрах</p>
+                        <input class="personAge-box" type="text" id="age" name="age" placeholder="Placeholder">
+                        <span id="error-message-age">Можно вводить только цифры</span>
+                    </div>
+                </div>
+                <div class="checkbox-box">
+                    <div class="checkbox-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" class="checkbox-input required-checkbox" value="1" required>
+                            Обязательный checkbox
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" class="checkbox-input" value="2">
+                            Необязательный checkbox
+                        </label>
+                    </div>
+                    <span class="error-message">Обязательный checkbox должен быть отмечен</span>
+                </div>
+                <button class="button" type="submit">Отправить</button>
+            </form>
+            <div id="modal" class="modal center" style="display: none;">
+                <div class="modal-content center">
+                    <h3>Результат отправки:</h3>
+                    <p id="rangeValue">Диапазон: от N до N</p>
+                    <p id="selectValue">Select: value</p>
+                    <p id="radioValue">Radio: value</p>
+                    <p id="nameValue">ФИО: string</p>
+                    <p id="ageValue">Возраст: int</p>
+                    <p id="checkboxValue">Выбранные checkbox: value</p>
+                    <button id="closeModal" class="button">Закрыть</button>
+                </div>
+            </div>
+        </section>
+        <section class="description center">
+            <h3>Заголовок h3</h3>
+            <p class="description__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </section>
+        <footer class="footer center">
+            <div class="footer-content">
+                <p>Степанов Андрей Александрович</p>
+                <p>Дата рождения: 25.08.1999</p>
+                <p>Текущий год: <span id="currentYear"></span></p>
+            </div>
+        </footer>
+                                         
+    <script src="script.js"></script>
+</body>
+</html>
