@@ -23,81 +23,86 @@
         </header>
         <section class="playground center">
             <h2>Заголовок h2</h2>
-            <form class="for-mob" id="myForm">
+            <form class="for-mob form">
                 <div class="range-box">
                     <p class="playground__text">Выберите диапазон</p>
                     <div class="input-box">
-                        <input class="value-box" type="number" id="rangeMin" min="0" max="150" placeholder="от 0">
-                        <input class="value-box" type="number" id="rangeMax" min="0" max="150" placeholder="до 150">
+                        <input class="value-box rangeMin" type="number" min="0" max="150" placeholder="от 0">
+                        <input class="value-box rangeMax" type="number" min="0" max="150" placeholder="до 150">
                     </div>
                     <div class="slider-container">
-                        <input class="slider" type="range" id="sliderMin" min="0" max="150" value="0">
-                        <input class="slider" type="range" id="sliderMax" min="0" max="150" value="150">
+                        <input class="slider sliderMin" type="range" min="0" max="150" value="0">
+                        <input class="slider sliderMax" type="range" min="0" max="150" value="150">
                         <div class="slider-track"></div>
                     </div>
                 </div>
                 <div class="content">
                     <div class="select-box">
                         <p class="playground__text">Выберите select</p>
-                        <select id="numberSelect" class="number-select">
-                            <option value="" selected disabled hidden>Option</option>
-                            <option value="Vite">Vite</option>
-                            <option value="Webpack">Webpack</option>
-                            <option value="Gulp">Gulp</option>
-                        </select>
+                        <div class="select-trigger">
+                            <span class="select-text">Option</span>
+                            <span class="arrow">&#9662;</span>
+                        </div>
+                        <div class="number-select selectElement">
+                            <div class="option" data-value="Vite">Vite</div>
+                            <div class="option" data-value="Webpack">Webpack</div>
+                            <div class="option" data-value="Gulp">Gulp</div>
+                        </div>
                     </div>
                     <div class="radio-box">
-                        <p id="radio-text" class="playground__text">Выберите radio</p>
-                        <div class="radio-options">
-                            <label class="radio-label">
-                                <input type="radio" name="option" value="JavaScript" class="radio-input"> JavaScript
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="option" value="PHP" class="radio-input"> PHP
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="option" value="C#" class="radio-input"> C#
-                            </label>
+                        <p class="playground__text">Выберите radio</p>
+                        <div class="radio-label-box">
+                            <div class="radio-label" data-value="JavaScript">
+                                <span></span> JavaScript
+                            </div>
+                            <div class="radio-label" data-value="PHP">
+                                <span></span> PHP
+                            </div>
+                            <div class="radio-label" data-value="C#">
+                                <span></span> C#
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="content">
                     <div class="name-box">
                         <p class="playground__text">Введите ФИО</p>
-                        <input class="personName-box" type="text" id="name" name="name" placeholder="Placeholder">
-                        <span id="error-message-name">Полное ФИО и без цифр</span>
+                        <input class="personName-box nameInput" type="text" placeholder="Placeholder">
+                        <span class="error-message-name">Полное ФИО и без цифр</span>
                     </div>
                     <div class="age-box">
                         <p class="playground__text">Введите возраст в цифрах</p>
-                        <input class="personAge-box" type="text" id="age" name="age" placeholder="Placeholder">
-                        <span id="error-message-age">Можно вводить только цифры</span>
+                        <input class="personAge-box ageInput" type="text" placeholder="Placeholder">
+                        <span class="error-message-age">Можно вводить только цифры</span>
                     </div>
                 </div>
                 <div class="checkbox-box">
                     <div class="checkbox-options">
                         <label class="checkbox-label">
-                            <input type="checkbox" class="checkbox-input required-checkbox" value="1" required>
-                            Обязательный checkbox
+                            <input type="checkbox" class="required-checkbox">
+                            <div class="custom-checkbox"></div>
+                            <span>Обязательный checkbox</span>
                         </label>
                         <label class="checkbox-label">
-                            <input type="checkbox" class="checkbox-input" value="2">
-                            Необязательный checkbox
+                            <input type="checkbox" class="optional-checkbox">
+                            <div class="custom-checkbox"></div>
+                            <span>Необязательный checkbox</span>
                         </label>
                     </div>
                     <span class="error-message">Обязательный checkbox должен быть отмечен</span>
                 </div>
                 <button class="button" type="submit">Отправить</button>
             </form>
-            <div id="modal" class="modal center" style="display: none;">
+            <div class="modal center">
                 <div class="modal-content center">
                     <h3>Результат отправки:</h3>
-                    <p id="rangeValue">Диапазон: от N до N</p>
-                    <p id="selectValue">Select: value</p>
-                    <p id="radioValue">Radio: value</p>
-                    <p id="nameValue">ФИО: string</p>
-                    <p id="ageValue">Возраст: int</p>
-                    <p id="checkboxValue">Выбранные checkbox: value</p>
-                    <button id="closeModal" class="button">Закрыть</button>
+                    <p class="rangeValue">Диапазон: от N до N</p>
+                    <p class="selectValue">Select: value</p>
+                    <p class="radioValue">Radio: value</p>
+                    <p class="nameValue">ФИО: string</p>
+                    <p class="ageValue">Возраст: int</p>
+                    <p class="checkboxValue">Выбранные checkbox: value</p>
+                    <button class="closeModal button">Закрыть</button>
                 </div>
             </div>
         </section>
@@ -109,10 +114,9 @@
             <div class="footer-content">
                 <p>Степанов Андрей Александрович</p>
                 <p>Дата рождения: 25.08.1999</p>
-                <p>Текущий год: <span id="currentYear"></span></p>
+                <p>Текущий год: <span class="currentYear"></span></p>
             </div>
         </footer>
-                                         
     <script src="script.js"></script>
 </body>
 </html>

@@ -10,6 +10,17 @@ body {
   font-family: "Source Code Pro", monospace;
 }
 
+@mixin windownet {
+  width: 648px;
+  margin: 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.center {
+  @include windownet;
+}
+
 a {
   text-decoration: none;
 }
@@ -50,13 +61,6 @@ h3 {
   margin-top: -221px;
   padding-left: 156px;
   padding-right: 156px;
-}
-
-.center {
-  width: 648px;
-  margin: 0 auto;
-  padding-left: 0;
-  padding-right: 0;
 }
 
 .content {

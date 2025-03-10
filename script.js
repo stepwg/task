@@ -1,13 +1,13 @@
-const rangeMin = document.getElementById('rangeMin');
-const rangeMax = document.getElementById('rangeMax');
-const sliderMin = document.getElementById('sliderMin');
-const sliderMax = document.getElementById('sliderMax');
+// функции для слайдеров
+const rangeMin = document.querySelector('.rangeMin');
+const rangeMax = document.querySelector('.rangeMax');
+const sliderMin = document.querySelector('.sliderMin');
+const sliderMax = document.querySelector('.sliderMax');
 const sliderTrack = document.querySelector('.slider-track');
 
 const minLimit = 0;
 const maxLimit = 150;
 
-// слайдер функции
 function updateSliderTrack() {
     let minValue = parseInt(sliderMin.value);
     let maxValue = parseInt(sliderMax.value);
@@ -38,20 +38,8 @@ function updateSliders() {
     updateSliderTrack();
 }
 
-sliderMin.addEventListener('input', function () {
-    if (parseInt(sliderMin.value) >= parseInt(sliderMax.value)) {
-        sliderMin.value = parseInt(sliderMax.value) - 1;
-    }
-    updateInputs();
-});
-
-sliderMax.addEventListener('input', function () {
-    if (parseInt(sliderMax.value) <= parseInt(sliderMin.value)) {
-        sliderMax.value = parseInt(sliderMin.value) + 1;
-    }
-    updateInputs();
-});
-
+sliderMin.addEventListener('input', updateInputs);
+sliderMax.addEventListener('input', updateInputs);
 rangeMin.addEventListener('input', updateSliders);
 rangeMax.addEventListener('input', updateSliders);
 
@@ -60,157 +48,154 @@ updateSliderTrack();
 
 
 
-// селект функции
+
+
+
+// селект
 const selectBox = document.querySelector(".select-box");
-const selectElement = document.getElementById("numberSelect");
+const selectTrigger = document.querySelector(".select-trigger");
+const options = document.querySelectorAll(".option");
 
-selectElement.addEventListener("focus", () => {
-    selectBox.classList.add("active");
-});
-selectElement.addEventListener("blur", () => {
-    selectBox.classList.remove("active");
-});
-selectElement.addEventListener("change", () => {
-    selectElement.blur();
+selectTrigger.addEventListener("click", () => {
+    selectBox.classList.toggle("active");
 });
 
+options.forEach(option => {
+    option.addEventListener("click", () => {
+        selectTrigger.querySelector(".select-text").textContent = option.textContent;
 
+        options.forEach(opt => opt.classList.remove("selected"));
+        option.classList.add("selected");
 
-
-// радиокнопки
-const radioButtons = document.querySelectorAll('.radio-input');
-const radioLabels = document.querySelectorAll('.radio-label');
-
-radioButtons.forEach((radioButton) => {
-    radioButton.addEventListener('change', (event) => {
-        radioLabels.forEach(label => label.classList.remove('selected'));
-        event.target.closest('label').classList.add('selected');
+        selectBox.classList.remove("active");
     });
 });
+
+document.addEventListener("click", (e) => {
+    if (!selectBox.contains(e.target)) {
+        selectBox.classList.remove("active");
+    }
+});
+
+
+
+
+
+
+
+// радиоконпки
+const radioLabels = document.querySelectorAll('.radio-label');
+
+radioLabels.forEach(label => {
+    label.addEventListener('click', () => {
+        radioLabels.forEach(label => label.classList.remove('selected'));
+        label.classList.add('selected');
+    });
+});
+
+
+
 
 
 
 
 // инпут имя
-document.addEventListener("DOMContentLoaded", function () {
-    const nameInput = document.getElementById("name");
-    const errorMessage = document.getElementById("error-message-name");
+const nameInput = document.querySelector(".nameInput");
+const nameErrorMessage = document.querySelector(".error-message-name");
 
-    nameInput.addEventListener("input", function () {
-        const namePattern = /^[A-Za-zА-Яа-яЁё]{2,}\s[A-Za-zА-Яа-яЁё]{2,}\s[A-Za-zА-Яа-яЁё]{2,}$/;
-        
-        if (!namePattern.test(nameInput.value)) {
-            nameInput.classList.add("error");
-            errorMessage.style.opacity = "1";
-            errorMessage.style.visibility = "visible";
-        } else {
-            nameInput.classList.remove("error");
-            errorMessage.style.opacity = "0";
-            errorMessage.style.visibility = "hidden";
-        }
-    });
+nameInput.addEventListener("input", function () {
+    const namePattern = /^[A-Za-zА-Яа-яЁё]{2,}\s[A-Za-zА-Яа-яЁё]{2,}\s[A-Za-zА-Яа-яЁё]{2,}$/;
+
+    if (!namePattern.test(nameInput.value)) {
+        nameInput.classList.add("error");
+        nameErrorMessage.style.opacity = "1";
+        nameErrorMessage.style.visibility = "visible";
+    } else {
+        nameInput.classList.remove("error");
+        nameErrorMessage.style.opacity = "0";
+        nameErrorMessage.style.visibility = "hidden";
+    }
 });
+
+
+
 
 
 
 
 // инпут возраст
-document.addEventListener("DOMContentLoaded", function () {
-    const ageInput = document.getElementById("age");
-    const errorMessage = document.getElementById("error-message-age");
+const ageInput = document.querySelector(".ageInput");
+const ageErrorMessage = document.querySelector(".error-message-age");
 
-    ageInput.addEventListener("input", function () {
-        const ageValue = ageInput.value;
-
-        if (!/^\d+$/.test(ageValue)) {
-            errorMessage.style.opacity = "1";
-            errorMessage.style.visibility = "visible";
-            ageInput.classList.add("error");
-        } else {
-            errorMessage.style.opacity = "0";
-            errorMessage.style.visibility = "hidden";
-            ageInput.classList.remove("error");
-        }
-    });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-// чекбоксы
-document.getElementById("myForm").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const checkboxes = document.querySelectorAll(".checkbox-input:checked");
-    const checkedCount = checkboxes.length;
-
-    const checkboxElement = document.getElementById("checkboxValue");
-    if (checkboxElement) {
-        checkboxElement.textContent = `Выбрано чекбоксов: ${checkedCount}`;
+ageInput.addEventListener("input", function () {
+    if (!/^\d+$/.test(ageInput.value)) {
+        ageErrorMessage.style.opacity = "1";
+        ageErrorMessage.style.visibility = "visible";
+        ageInput.classList.add("error");
     } else {
-        console.error("Элемент #checkboxValue не найден! Проверьте HTML.");
+        ageErrorMessage.style.opacity = "0";
+        ageErrorMessage.style.visibility = "hidden";
+        ageInput.classList.remove("error");
     }
-
-    document.getElementById("modal").style.display = "block";
 });
-    
 
 
 
 
-// Подвал
-document.getElementById("currentYear").textContent = new Date().getFullYear();
 
 
 
+// модалка
+const form = document.querySelector(".form");
+const rangeValue = document.querySelector(".rangeValue");
+const selectValue = document.querySelector(".selectValue");
+const radioValue = document.querySelector(".radioValue");
+const nameValue = document.querySelector(".nameValue");
+const ageValue = document.querySelector(".ageValue");
+const modal = document.querySelector(".modal");
+const closeModal = document.querySelector(".closeModal");
 
-// модальное окно
-document.addEventListener("DOMContentLoaded", function () {
+const agreeCheckbox = document.querySelector(".required-checkbox");
+const submitButton = document.querySelector(".button");
 
-const form = document.getElementById("myForm");
-const rangeMin = document.getElementById("rangeMin");
-const rangeMax = document.getElementById("rangeMax");
-const sliderMin = document.getElementById("sliderMin");
-const sliderMax = document.getElementById("sliderMax");
-const select = document.getElementById("numberSelect");
-const radioButtons = document.querySelectorAll("input[name='option']");
-const nameInput = document.getElementById("name");
-const ageInput = document.getElementById("age");
-const rangeValue = document.getElementById("rangeValue");
-const selectValue = document.getElementById("selectValue");
-const radioValue = document.getElementById("radioValue");
-const nameValue = document.getElementById("nameValue");
-const ageValue = document.getElementById("ageValue");
-const checkboxValue = document.getElementById("checkboxValue");
-const modal = document.getElementById("modal");
-const closeModal = document.getElementById("closeModal");
+function updateSubmitButtonState() {
+    submitButton.disabled = !agreeCheckbox.checked;
+}
+
+agreeCheckbox.addEventListener("change", updateSubmitButtonState);
+
+function validateForm() {
+    const rangeFilled = rangeMin.value && rangeMax.value;
+    const selectFilled = selectTrigger.querySelector(".select-text").textContent !== "Выберите...";
+    const radioFilled = document.querySelector(".radio-label.selected") !== null;
+    const nameFilled = nameInput.value.trim().length > 0;
+    const ageFilled = ageInput.value.trim().length > 0;
+    const checkboxChecked = agreeCheckbox.checked;
+
+    if (rangeFilled && selectFilled && radioFilled && nameFilled && ageFilled && checkboxChecked) {
+        return true;
+    } else {
+        alert("Заполните все боксы");
+        return false;
+    }
+};
 
 form.addEventListener("submit", function (e) {
-e.preventDefault();
+    e.preventDefault();
 
-const selectedRangeMin = rangeMin.value || sliderMin.value;
-const selectedRangeMax = rangeMax.value || sliderMax.value;
-const selectedOption = select.value || "Не выбран";
-const selectedRadio = Array.from(radioButtons).find(radio => radio.checked)?.value || "Не выбрано";
-const name = nameInput.value;
-const age = ageInput.value;
+    if (validateForm()) {
+        rangeValue.textContent = `Диапазон: от ${rangeMin.value} до ${rangeMax.value}`;
+        selectValue.textContent = `Выбранный элемент: ${selectTrigger.querySelector(".select-text").textContent}`;
+        radioValue.textContent = `Выбранная опция: ${document.querySelector(".radio-label.selected").textContent}`;
+        nameValue.textContent = `ФИО: ${nameInput.value}`;
+        ageValue.textContent = `Возраст: ${ageInput.value}`;
 
-rangeValue.textContent = `Диапазон: от ${selectedRangeMin} до ${selectedRangeMax}`;
-selectValue.textContent = `Select: ${selectedOption}`;
-radioValue.textContent = `Radio: ${selectedRadio}`;
-nameValue.textContent = `ФИО: ${name}`;
-ageValue.textContent = `Возраст: ${age}`; 
-
-
-modal.style.display = "block";
+        modal.style.display = "block";
+        modal.style.top = "50%";
+        modal.style.left = "50%";
+        modal.style.transform = "translate(-50%, -50%)";
+        modal.style.position = "fixed";
+    }
 });
 
 closeModal.addEventListener("click", function () {
@@ -222,25 +207,5 @@ window.addEventListener("keydown", function (e) {
         modal.style.display = "none";
     }
 });
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.getElementById("modal");
-    const closeModal = document.getElementById("closeModal");
-    const form = document.getElementById("myForm");
-
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        modal.classList.add("show");
-    });
-
-    closeModal.addEventListener("click", () => {
-        modal.classList.remove("show");
-    });
-
-    window.addEventListener("click", (e) => {
-        if (e.target === modal) {
-            modal.classList.remove("show");
-        }
-    });
-});
+updateSubmitButtonState();
